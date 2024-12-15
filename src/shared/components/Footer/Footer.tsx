@@ -2,16 +2,16 @@
 
 export const FooterComponent =() => {
     return (
-        <footer className="bg-light text-dark py-4">
+        <footer className="bg-light text-dark py-4 ">
             <div className="container">
-                <div className="row">
+                <div className="row gy-3">
                     <div className="col-md-4">
                         <h5>About Us</h5>
                         <p>
                             A simple and intuitive Time Tracker that records hours, minutes, and seconds to help you monitor and manage your time effectively.
                         </p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 ">
                         <h5>Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><a href="#" className="text-dark">Home</a></li>

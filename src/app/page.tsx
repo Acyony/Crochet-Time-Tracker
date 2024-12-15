@@ -6,13 +6,18 @@ import NavbarComponent from "@/shared/components/Navbar/Navbar";
 
 export default function Home() {
     return (
-        <div className={styles.page}>
-            <NavbarComponent/>
-            <main >
-                <h1>Time Tracker</h1>
-                <TimeTracker/>
+        <div className="d-flex flex-column min-vh-100">
+            {/* Navbar */}
+            <NavbarComponent />
+
+            {/* Main Content */}
+            <main className="container my-5 flex-grow-1 text-center">
+                <h1 className="mb-4">Time Tracker</h1>
+                <TimeTracker />
             </main>
-            <FooterComponent/>
+
+            {/* Footer */}
+            <FooterComponent />
         </div>
     );
 }

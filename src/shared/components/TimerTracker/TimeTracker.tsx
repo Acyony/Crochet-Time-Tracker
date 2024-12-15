@@ -37,7 +37,7 @@ export const TimeTracker = () => {
 
     return (
         <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-4 gy-3">
                 <div className="card">
                     <div className="card-body">
                         <button type="button" className="btn btn-primary" onClick={handleStart}>
@@ -47,7 +47,7 @@ export const TimeTracker = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-4 gy-3">
                 <div className="card">
                     <div className="card-body">
                         <button type="button" className="btn btn-danger" onClick={handleStop}>
@@ -57,7 +57,7 @@ export const TimeTracker = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-4 gy-3">
                 <div className="card">
                     <div className="card-body">
                         <p>Total Time Worked: {formatTime(totalTime)} </p>
