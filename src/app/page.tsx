@@ -12,7 +12,7 @@ export default function Home() {
 
             {/* Main Content */}
             <main className="container my-5 flex-grow-1 text-center">
-                <h1 className="mb-4">Time Tracker</h1>
+                <h1 className="mb-4">Project Name</h1>
                 <TimeTracker />
             </main>
 
