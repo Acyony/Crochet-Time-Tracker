@@ -43,7 +43,7 @@ export const TimeTracker = () => {
                         <button type="button" className="btn btn-primary" onClick={handleStart}>
                             Start Timer
                         </button>
-                        <p>Time: {formatTime(time)} </p>
+                        <p className="card-text mt-3">Time: {formatTime(time)} </p>
                     </div>
                 </div>
             </div>
@@ -53,14 +53,14 @@ export const TimeTracker = () => {
                         <button type="button" className="btn btn-danger" onClick={handleStop}>
                             Stop Timer
                         </button>
-                        <p>Current Session Time: {formatTime(time)} </p>
+                        <p className="card-text mt-3">Current Session Time: {formatTime(time)} </p>
                     </div>
                 </div>
             </div>
             <div className="col-sm-4 gy-3">
                 <div className="card">
                     <div className="card-body">
-                        <p>Total Time Worked: {formatTime(totalTime)} </p>
+                        <p className="card-text">Total Time Worked: {formatTime(totalTime)} </p>
                     </div>
                 </div>
             </div>
