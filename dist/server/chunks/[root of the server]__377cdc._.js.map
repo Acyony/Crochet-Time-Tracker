@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file:///Users/alcione/Documents/crochet-time-tracker/src/app/api/projects/route.ts"],"sourcesContent":["import { PrismaClient } from '@prisma/client';\n\nconst prisma = new PrismaClient();\n\nexport async function GET() {\n    const projects = await prisma.project.findMany();\n    return new Response(JSON.stringify(projects));\n}\n\nexport async function POST(req: Request) {\n    const data = await req.json();\n    const newProject = await prisma.project.create({ data });\n    return new Response(JSON.stringify(newProject), { status: 201 });\n}\n"],"names":[],"mappings":";;;;AAAA;;AAEA,MAAM,SAAS,IAAI,6HAAA,CAAA,eAAY;AAExB,eAAe;IAClB,MAAM,WAAW,MAAM,OAAO,OAAO,CAAC,QAAQ;IAC9C,OAAO,IAAI,SAAS,KAAK,SAAS,CAAC;AACvC;AAEO,eAAe,KAAK,GAAY;IACnC,MAAM,OAAO,MAAM,IAAI,IAAI;IAC3B,MAAM,aAAa,MAAM,OAAO,OAAO,CAAC,MAAM,CAAC;QAAE;IAAK;IACtD,OAAO,IAAI,SAAS,KAAK,SAAS,CAAC,aAAa;QAAE,QAAQ;IAAI;AAClE"}},
+    {"offset": {"line": 75, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
