@@ -4,34 +4,35 @@ import {useEffect, useState} from "react";
 type Project = {
     id: number;
     name: string;
-    hours: number;
+    time: number;
 };
 
 
-
-export const TimeTracker = () => {
+export const TimeTracker = (props: { projectId: number; }) => {
     const [isCounting, setIsCounting] = useState(false);
     const [time, setTime] = useState(0);
     const [totalTime, setTotalTime] = useState(0);
     const [projects, setProjects] = useState<Project[]>([]);
-    const [projectName, setProjectName] = useState('');
-    const [hasProjectName, setHasProjectName] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
     useEffect(() => {
-        async function fetchProjects() {
+        async function fetchProject() {
             try {
-                const response = await fetch('/api/projects');
+                const response = await fetch('/api/projects/' + props.projectId);
                 if (!response.ok) {
                     throw new Error('Failed to fetch projects');
                 }
                 const data = await response.json();
-                setProjects(data);
+                setSelectedProject(data);
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
         }
 
-        fetchProjects();
+        fetchProject();
     }, []);
+
+
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
@@ -47,36 +48,6 @@ export const TimeTracker = () => {
         setIsCounting(true);
     };
 
-    const handleSubmit = async () => {
-        if (!projectName.trim()) {
-            alert("Project name is required!");
-            return;
-        }
-
-        try {
-            const newProject = {
-                name: projectName,
-                hours: 0, // Default hours as 0 initially
-            };
-
-            const response = await fetch('/api/projects', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newProject),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to save the project');
-            }
-
-            const savedProject = await response.json();
-            setProjects((prevProjects) => [...prevProjects, savedProject]);
-            setProjectName(projectName);
-            setHasProjectName(true); // Disable input and button
-        } catch (error) {
-            console.error('Error saving project:', error);
-        }
-    };
 
     const handleStop = async () => {
 
@@ -87,19 +58,22 @@ export const TimeTracker = () => {
 
         try {
             const projectData = {
-                name: projectName,
-                hours: sessionTime / 3600, // Convert seconds to hours
+                name: selectedProject?.name,
+                id: selectedProject?.id,
+                time: sessionTime / 3600, // Convert seconds to hours
             };
-
+            console.log('Project data to send:', projectData);
             const response = await fetch('/api/projects', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(projectData),
             });
 
+
             if (!response.ok) {
                 throw new Error('Failed to save time to the database');
             }
+            console.log('API Response:', response);
 
             const newProject = await response.json();
             setProjects((prevProjects) => [...prevProjects, newProject]);
@@ -119,23 +93,6 @@ export const TimeTracker = () => {
 
     return (
         <div className="row">
-            <div className="d-flex col-sm-12 gap-3">
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Project Name"
-                    value={projectName}
-                    onChange={(e) => setProjectName(e.target.value)}
-                />
-                <button
-                    type="button"
-                    className="btn btn-primary ps-3"
-                    onClick={handleSubmit}
-                    disabled={!projectName.trim() || hasProjectName} // Disable button after submission
-                >
-                    Submit
-                </button>
-            </div>
             <div className="col-sm-12 mt-3">
                 {projects.length > 0 && (
                     <span className="badge bg-info">
@@ -150,7 +107,6 @@ export const TimeTracker = () => {
                             type="button"
                             className="btn btn-primary"
                             onClick={handleStart}
-                            disabled={!hasProjectName}
                         >
                             Start Timer
                         </button>

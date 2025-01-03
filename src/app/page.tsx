@@ -1,22 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TimeTracker from "@/shared/components/TimerTracker/TimeTracker";
+// import TimeTracker from "@/shared/components/TimerTracker/TimeTracker";
 import FooterComponent from "@/shared/components/Footer/Footer";
 import NavbarComponent from "@/shared/components/Navbar/Navbar";
+import AddProject from "@/shared/components/Home/AddProject";
+import SearchProject from "@/shared/components/Home/SearchProject";
 
 export default function Home() {
     return (
         <div className="d-flex flex-column min-vh-100">
             {/* Navbar */}
-            <NavbarComponent />
+            <NavbarComponent/>
 
             {/* Main Content */}
             <main className="container my-5 flex-grow-1 text-center">
-                <h1 className="mb-4">Project Name</h1>
-                <TimeTracker />
+                <h1 className="mb-4">Time Tracker</h1>
+                <div>
+                    <AddProject/>
+                </div>
+                <div className="mt-3">
+                    <SearchProject/>
+                </div>
+
             </main>
 
             {/* Footer */}
-            <FooterComponent />
+            <FooterComponent/>
         </div>
     );
 }
