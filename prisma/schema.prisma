@@ -17,5 +17,5 @@ datasource db {
 model Project {
   id    Int    @id @default(autoincrement())
   name  String
-  time Int
+  time  Int    @default(0) // Ensure a default value to avoid null issues
 }

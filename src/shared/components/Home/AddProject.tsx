@@ -17,13 +17,14 @@ export const AddProject = () => {
 
         try {
             const newProject = {
+                action: 'create', // Explicitly specify the create action
                 name: projectName,
                 time: 0, // Default time as 0 initially
             };
 
             const response = await fetch('/api/projects', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newProject),
             });
 
@@ -34,6 +35,7 @@ export const AddProject = () => {
             const savedProject = await response.json();
             setProjects((prevProjects) => [...prevProjects, savedProject]);
             console.log("savedProject", savedProject);
+
             // Redirect to the TimeTracker page
             router.push(`/projects/${savedProject.id}`);
         } catch (error) {
