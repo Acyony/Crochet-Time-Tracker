@@ -45,8 +45,8 @@ const ProjectList = () => {
 
     return (
         <>
+            <NavbarComponent/>
             <main className="container my-5 flex-grow-1 ">
-                <NavbarComponent/>
                 <div className="container">
                     <div className="d-flex justify-content-center align-items-center  mt-xl-5 mb-xl-5">
                         <div>
