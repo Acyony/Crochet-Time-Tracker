@@ -23,6 +23,7 @@ export const TimeTracker = (props: { projectId: number; }) => {
                 }
                 const data = await response.json();
                 setSelectedProject(data);
+                setTotalTime(data.time);
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
@@ -42,23 +43,9 @@ export const TimeTracker = (props: { projectId: number; }) => {
         return () => clearInterval(timer);
     }, [isCounting]);
 
-    // Load totalTime from localStorage on component mount
-    useEffect(() => {
-        const storedTotalTime = localStorage.getItem('totalTime');
-        if (storedTotalTime) {
-            setTotalTime(Number(storedTotalTime));
-        }
-    }, []);
-
-// Save totalTime to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('totalTime', String(totalTime));
-    }, [totalTime]);
-
     const handleStart = () => {
         setIsCounting(true);
     };
-
 
     const handleStop = async () => {
         setIsCounting(false);
@@ -71,12 +58,10 @@ export const TimeTracker = (props: { projectId: number; }) => {
 
         try {
             // Update the total time in the database
-            const response = await fetch('/api/projects', {
+            const response = await fetch(`/api/projects/${[selectedProject?.id]}/save-time`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    action: 'update',
-                    projectId: selectedProject?.id, // Ensure selected project ID
                     additionalTime: sessionTime, // Increment time in seconds
                 }),
             });
