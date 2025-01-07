@@ -40,10 +40,14 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
-        const users = await prisma.project.findMany(); // Fetch all users from the database
-        return NextResponse.json(users, { status: 200 });
+        const projects = await prisma.project.findMany({
+            orderBy: {
+                id: 'desc',
+            },
+        });
+        return NextResponse.json(projects, { status: 200 });
     } catch (error) {
-        console.error("Error fetching users:", error);
-        return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
+        console.error("Error fetching projects:", error);
+        return NextResponse.json({ error: "Failed to fetch projects" }, { status: 500 });
     }
 }
