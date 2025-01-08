@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Project = {
     id: number;
@@ -9,37 +9,46 @@ type Project = {
     time: number;
 };
 
-
 export const SearchProject = () => {
-    const [projectName, setProjectName] = useState('');
-    const [projects, setProjects] = useState<Project | null>(null);
+    const [projectName, setProjectName] = useState("");
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
-    const handleSubmit = async () => {
-        if (!projectName.trim()) {
-            alert("Project name is required!");
+    // Fetch projects by name
+    const searchProjects = async (name: string) => {
+        if (!name.trim()) {
+            setError("Please enter a valid project name.");
             return;
         }
 
+        setIsLoading(true);
+        setError(null);
+
         try {
-            // Search for an existing project
-            const response = await fetch(`/api/projects?name=${encodeURIComponent(projectName)}`);
+            const response = await fetch(`/api/projects/search-project?name=${encodeURIComponent(name)}`);
             if (!response.ok) {
-                throw new Error('Error searching for project');
+                throw new Error("Failed to fetch projects");
             }
 
-            const foundProject = await response.json();
+            const data = await response.json();
+            setProjects(data);
 
-            if (foundProject) {
-                setProjects(foundProject); // Update state with the found project
-                alert(`Project "${projectName}" found!`);
-            } else {
-                setProjects(null); // Clear previous results if no project found
-                alert(`No project found with the name "${projectName}".`);
+            if (data.length === 0) {
+                setError("No projects found.");
             }
         } catch (error) {
-            console.error('Error searching for project:', error);
-            alert('An error occurred while searching for the project.');
+            console.error("Error searching projects:", error);
+            setError("An error occurred while searching for projects.");
+        } finally {
+            setIsLoading(false);
         }
+    };
+
+    const handleProjectClick = (project: Project) => {
+        const projectUrl = `/projects/${project.id}`;
+        router.push(projectUrl);
     };
 
     return (
@@ -55,17 +64,33 @@ export const SearchProject = () => {
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={handleSubmit}
+                    onClick={() => searchProjects(projectName)}
+                    disabled={isLoading}
                 >
-                    Search
+                    {isLoading ? "Searching..." : "Search"}
                 </button>
             </div>
-            {projects && (
-                <div className="mt-3">
-                    <h4>Project Details:</h4>
-                    <p><strong>Name:</strong> {projects.name}</p>
-                    <p><strong>Hours:</strong> {projects.time}</p>
+
+            {error && (
+                <div className="alert alert-danger mt-3" role="alert">
+                    {error}
                 </div>
+            )}
+
+            {projects.length > 0 && (
+                <ul className="list-group mt-5">
+                    {projects.map((project) => (
+                        <li
+                            key={project.id}
+                            className="list-group-item mt-2 d-flex justify-content-between align-items-center"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleProjectClick(project)}
+                        >
+                            {project.name}
+                            <button type="button" className="btn btn-danger">Danger</button>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );
