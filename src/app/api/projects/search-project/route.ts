@@ -10,7 +10,6 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams
     const name = searchParams.get('name')
 
-    // Validar se o nome do projeto foi fornecido corretamente
     if (!name) {
         return NextResponse.json(
             {error: 'projectName must be a valid string'},
@@ -19,7 +18,6 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-        // Buscar o projeto pelo nome no banco de dados
         const projects = await prisma.project.findMany({
             where: {
                 name: {
@@ -29,10 +27,8 @@ export async function GET(req: NextRequest) {
             },
         });
 
-        // Retornar os dados do projeto
         return NextResponse.json(projects);
     } catch (error) {
-        // Retornar erro caso o projeto não seja encontrado
         return NextResponse.json(
             {error: 'Project not found'},
             {status: 404}
