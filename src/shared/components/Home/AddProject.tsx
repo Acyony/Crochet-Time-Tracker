@@ -6,7 +6,8 @@ import {Project} from "next/dist/build/swc/types";
 
 export const AddProject = () => {
     const [projectName, setProjectName] = useState('');
-    const [projects, setProjects] = useState<Project[]>([]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, setProjects] = useState<Project[]>([]);
     const router = useRouter();
 
     const handleSubmit = async () => {

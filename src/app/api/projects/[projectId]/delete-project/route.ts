@@ -34,6 +34,7 @@ export async function DELETE(req: NextApiRequest, { params }: { params: { projec
 
         // Return the deleted project data
         return NextResponse.json(deletedProject, { status: 200 });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         // Handle errors (e.g., project not found)
         return NextResponse.json(
