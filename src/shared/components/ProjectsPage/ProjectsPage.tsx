@@ -93,7 +93,7 @@ const ProjectList = () => {
                                     Delete
                                 </button>
                             </li>
-                        ))}s
+                        ))}
                     </ul>
 
 
