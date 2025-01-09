@@ -89,10 +89,10 @@ export const TimeTracker = (props: { projectId: number; }) => {
 
     return (
         <div className="row">
-            <div className="col-sm-12 mt-3">
-                <span className="badge bg-info">
-                 Project: {selectedProject?.name}
-            </span>
+            <div className="col-sm-12 mt-3 mb-4">
+                <h5 className="card-title">
+                    Project: {selectedProject?.name}
+                </h5>
             </div>
             <div className="col-sm-4 gy-3">
                 <div className="card">

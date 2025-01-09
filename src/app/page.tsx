@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import TimeTracker from "@/shared/components/TimerTracker/TimeTracker";
 import FooterComponent from "@/shared/components/Footer/Footer";
 import NavbarComponent from "@/shared/components/Navbar/Navbar";
 import AddProject from "@/shared/components/Home/AddProject";

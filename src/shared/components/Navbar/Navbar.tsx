@@ -1,8 +1,11 @@
 'use client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 import Link from "next/link";
 
 export const NavbarComponent = () => {
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light  w-100">
             <div className="container-fluid">

@@ -14,6 +14,7 @@
     "queries": "node scripts/queries.ts"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@prisma/client": "^6.1.0",
     "@prisma/extension-accelerate": "^1.2.1",
     "bootstrap": "^5.3.3",
@@ -23,6 +24,7 @@
     "pg": "^8.13.1",
     "prisma": "^6.1.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1"
   },
