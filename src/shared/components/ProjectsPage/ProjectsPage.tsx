@@ -13,7 +13,8 @@ interface Project {
 
 const ProjectList = () => {
     const [projects, setProjects] = useState<Project[]>([]);
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, setSelectedProject] = useState<Project | null>(null);
     const router = useRouter();
 
     // Fetch all projects

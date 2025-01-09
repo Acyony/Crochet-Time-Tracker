@@ -30,7 +30,7 @@ export const TimeTracker = (props: { projectId: number; }) => {
         }
 
         fetchProject();
-    }, []);
+    }, [props.projectId]);
 
 
     useEffect(() => {

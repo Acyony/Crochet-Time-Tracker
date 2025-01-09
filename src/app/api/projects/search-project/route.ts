@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
         });
 
         return NextResponse.json(projects);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         return NextResponse.json(
             {error: 'Project not found'},
