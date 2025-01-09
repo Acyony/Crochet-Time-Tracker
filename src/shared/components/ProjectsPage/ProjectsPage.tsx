@@ -30,6 +30,24 @@ const ProjectList = () => {
         }
     };
 
+    // Delete a project
+    const deleteProject = async (projectId: number) => {
+        try {
+            const response = await fetch(`/api/projects/${projectId}/delete-project`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Failed to delete project");
+            }
+            // Update the state to remove the deleted project
+            setProjects((prevProjects) =>
+                prevProjects.filter((project) => project.id !== projectId)
+            );
+        } catch (error) {
+            console.error("Error deleting project:", error);
+        }
+    };
+
     // Handle project click
     const handleProjectClick = (project: Project) => {
         setSelectedProject(project);
@@ -64,9 +82,18 @@ const ProjectList = () => {
                                 onClick={() => handleProjectClick(project)}
                             >
                                 {project.name}
-                                <button type="button" className="btn btn-danger">Danger</button>
+                                <button
+                                    type="button"
+                                    className="btn btn-danger"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
+                                        deleteProject(project.id);
+                                    }}
+                                >
+                                    Delete
+                                </button>
                             </li>
-                        ))}
+                        ))}s
                     </ul>
 
 
