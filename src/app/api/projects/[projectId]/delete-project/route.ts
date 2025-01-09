@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import {NextRequest, NextResponse} from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
 
-export async function DELETE(req: NextRequest, { params }: { params: { projectId: string } }) {
-    const projectId = (await params).projectId;
+export async function DELETE(req: NextRequest, context: { params: { projectId: string } }) {
+    const { projectId } = context.params;
 
     // Validate projectId
     if (!projectId || Array.isArray(projectId)) {
@@ -33,7 +33,6 @@ export async function DELETE(req: NextRequest, { params }: { params: { projectId
 
         // Return the deleted project data
         return NextResponse.json(deletedProject, { status: 200 });
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         // Handle errors (e.g., project not found)
         return NextResponse.json(
