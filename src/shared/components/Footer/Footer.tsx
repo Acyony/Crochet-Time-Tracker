@@ -1,5 +1,6 @@
 'use client';
 
+
 export const FooterComponent =() => {
     return (
         <footer className="bg-light text-dark py-4 ">
@@ -14,9 +15,17 @@ export const FooterComponent =() => {
                     <div className="col-md-4 ">
                         <h5>Quick Links</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#" className="text-dark">Home</a></li>
-                            <li><a href="#" className="text-dark">About</a></li>
-                            <li><a href="#" className="text-dark">Contact</a></li>
+                            <li className="nav-item">
+                                <a
+                                    href="https://www.linkedin.com/in/alcionefranca/"
+                                    className="nav-link active"
+                                    aria-current="page"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Social Media
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div className="col-md-4">
