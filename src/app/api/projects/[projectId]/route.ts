@@ -1,12 +1,13 @@
 import {PrismaClient} from '@prisma/client';
-import {NextApiRequest} from "next";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 const prisma = new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
 
-export async function GET(req: NextApiRequest, {params}: { params: { projectId: string } }) {
+export async function GET(
+    _: NextRequest,
+    {params}: { params: Promise<{ projectId: string }> }) {
     const projectId = (await params).projectId;
 
     // Ensure projectId exists and is a single value

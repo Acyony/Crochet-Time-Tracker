@@ -5,8 +5,11 @@ const prisma = new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
 
-export async function DELETE(req: NextRequest, context: { params: { projectId: string } }) {
-    const { projectId } = context.params;
+export async function DELETE(
+    _: NextRequest,
+    { params }: { params: Promise<{ projectId: string }> }
+) {
+    const projectId  = (await params).projectId;
 
     // Validate projectId
     if (!projectId || Array.isArray(projectId)) {
