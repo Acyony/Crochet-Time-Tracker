@@ -1,12 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import { NextApiRequest } from 'next';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
 
-export async function DELETE(req: NextApiRequest, { params }: { params: { projectId: string } }) {
+export async function DELETE( { params }: { params: { projectId: string } }) {
     const projectId = (await params).projectId;
 
     // Validate projectId
