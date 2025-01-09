@@ -4,7 +4,7 @@ import TimeTracker from "@/shared/components/TimerTracker/TimeTracker";
 import NavbarComponent from "@/shared/components/Navbar/Navbar";
 import FooterComponent from "@/shared/components/Footer/Footer";
 
-export default async function Page({ params }: { params: { projectId: number } }) {
+export default async function Page({ params }: { params: Promise<{ projectId: number }> }) {
     const id = (await params).projectId;
 
     return (
