@@ -7,7 +7,7 @@ import Link from "next/link";
 export const NavbarComponent = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light  w-100">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light w-100">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">TimeTracker</a>
                 <button
@@ -22,7 +22,7 @@ export const NavbarComponent = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             <Link href="/" className="nav-link active" aria-current="page">
                                 Home
@@ -37,6 +37,7 @@ export const NavbarComponent = () => {
                 </div>
             </div>
         </nav>
+
 
     )
 }
