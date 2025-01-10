@@ -7,23 +7,14 @@ import Link from "next/link";
 export const NavbarComponent = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light w-100">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">TimeTracker</a>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
+        <nav className="navbar navbar-light bg-light w-100">
+            <div className="container-fluid d-flex align-items-center justify-content-start">
+                <div>
+                    <a className="navbar-brand me-4" href="#">TimeTracker</a>
+                </div>
+                <div>
+                    <ul className="navbar-nav d-flex flex-row">
+                        <li className="nav-item me-3">
                             <Link href="/" className="nav-link active" aria-current="page">
                                 Home
                             </Link>
@@ -37,8 +28,6 @@ export const NavbarComponent = () => {
                 </div>
             </div>
         </nav>
-
-
     )
 }
 
