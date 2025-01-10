@@ -28,10 +28,6 @@ export const FooterComponent =() => {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-md-4">
-                        <h5>Contact</h5>
-                        <p>Email: alcionefribeiro@gmail.com</p>
-                    </div>
                 </div>
                 <div className="text-center mt-4">
                     <p>&copy; 2024 Alci1. All rights reserved.</p>
