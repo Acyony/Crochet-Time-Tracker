@@ -14,6 +14,7 @@ interface Project {
 const ProjectList = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true); // Add loading state
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, setSelectedProject] = useState<Project | null>(null);
     const router = useRouter();
@@ -23,6 +24,7 @@ const ProjectList = () => {
             const token = localStorage.getItem("token"); // Get the token
             if (!token) {
                 setError("You are not authenticated!");
+                setLoading(false); // Stop loading if unauthenticated
                 return;
             }
 
@@ -41,88 +43,94 @@ const ProjectList = () => {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
                 setError(err.message || "An unexpected error occurred!");
+            } finally {
+                setLoading(false); // Stop loading after fetching
             }
         };
 
         fetchProjects(); // Call the async function
     }, []);
 
+    if (loading) {
+        // Show loading animation while fetching data
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
+    }
+
     if (error) {
         return <div>{error}</div>; // Show error message if any
     }
 
-        // Delete a project
-        const deleteProject = async (projectId: number) => {
-            try {
-                const response = await fetch(`/api/projects/${projectId}/delete-project`, {
-                    method: "DELETE",
-                });
-                if (!response.ok) {
-                    throw new Error("Failed to delete project");
-                }
-                // Update the state to remove the deleted project
-                setProjects((prevProjects) =>
-                    prevProjects.filter((project) => project.id !== projectId)
-                );
-            } catch (error) {
-                console.error("Error deleting project:", error);
+    // Delete a project
+    const deleteProject = async (projectId: number) => {
+        try {
+            const response = await fetch(`/api/projects/${projectId}/delete-project`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Failed to delete project");
             }
-        };
-
-        // Handle project click
-        const handleProjectClick = (project: Project) => {
-            setSelectedProject(project);
-            const projectUrl = `/projects/${project.id}`; // Construct the correct route
-            console.log("Navigating to:", projectUrl); // Debug to confirm the route
-            router.push(projectUrl); // Navigate to the project page
-        };
-
-        // Fetch projects on component mount
-    /*    useEffect(() => {
-            fetchProjects();
-        }, []);*/
-
-        return (
-            <>
-                <NavbarComponent/>
-                <main className="container my-5 flex-grow-1 ">
-                    <div className="container">
-                        <div className="d-flex justify-content-center align-items-center  mt-xl-5 mb-xl-5">
-                            <div>
-                                <h1>All Projects</h1>
-                                <p>Look how many great projects you did ==^.^==!</p>
-                            </div>
-                        </div>
-
-                        <ul className="list-group mt-5 ">
-                            {projects.map((project) => (
-                                <li
-                                    key={project.id}
-                                    className="list-group-item mt-2 d-flex justify-content-between align-items-center"
-                                    style={{cursor: "pointer"}}
-                                    onClick={() => handleProjectClick(project)}
-                                >
-                                    {project.name}
-                                    <button
-                                        type="button"
-                                        className="btn btn-danger"
-                                        onClick={(e) => {
-                                            e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
-                                            deleteProject(project.id);
-                                        }}
-                                    >
-                                        Delete
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-
-
-                    </div>
-                </main>
-                <FooterComponent/>
-            </>
-        );
+            // Update the state to remove the deleted project
+            setProjects((prevProjects) =>
+                prevProjects.filter((project) => project.id !== projectId)
+            );
+        } catch (error) {
+            console.error("Error deleting project:", error);
+        }
     };
 
-    export default ProjectList;
+    // Handle project click
+    const handleProjectClick = (project: Project) => {
+        setSelectedProject(project);
+        const projectUrl = `/projects/${project.id}`; // Construct the correct route
+        console.log("Navigating to:", projectUrl); // Debug to confirm the route
+        router.push(projectUrl); // Navigate to the project page
+    };
+
+    return (
+        <>
+            <NavbarComponent/>
+            <main className="container my-5 flex-grow-1 ">
+                <div className="container">
+                    <div className="d-flex justify-content-center align-items-center  mt-xl-5 mb-xl-5">
+                        <div>
+                            <h1>All Projects</h1>
+                            <p>Look how many great projects you did ==^.^==!</p>
+                        </div>
+                    </div>
+
+                    <ul className="list-group mt-5 ">
+                        {projects.map((project) => (
+                            <li
+                                key={project.id}
+                                className="list-group-item mt-2 d-flex justify-content-between align-items-center"
+                                style={{cursor: "pointer"}}
+                                onClick={() => handleProjectClick(project)}
+                            >
+                                {project.name}
+                                <button
+                                    type="button"
+                                    className="btn btn-danger"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
+                                        deleteProject(project.id);
+                                    }}
+                                >
+                                    Delete
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </main>
+            <FooterComponent/>
+        </>
+    );
+};
+
+export default ProjectList;
