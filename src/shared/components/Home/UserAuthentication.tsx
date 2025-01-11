@@ -24,31 +24,35 @@ export const AuthComponent = ({register}: {register: boolean}) => {
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({email: userEmail, password: userPassword}),
-            })
+                body: JSON.stringify({ email: userEmail, password: userPassword }),
+            });
 
             if (!response.ok) {
-                throw new Error(`Failed to ${register ? "register" : "login"}! Please try again.`)
+                throw new Error(`Failed to ${register ? "register" : "login"}! Please try again.`);
             }
 
-            const data = await response.json()
+            const data = await response.json();
 
             if (data.message) {
                 alert(`${register ? "Registration" : "Login"} successful!`);
             }
 
-            if (!register) {
+            if (register) {
+                // Redirect to login page after successful registration
+                router.push('/auth/login');
+            } else {
                 localStorage.setItem("token", data.token);
-            }
 
-            // Redirect to /projects
-            router.push('/home');
+                // Redirect to /home after successful login
+                router.push('/home');
+            }
 
         } catch (error) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
             alert(error.message);
         }
+
     }
 
     const handleToggleAuthMode = () => {
