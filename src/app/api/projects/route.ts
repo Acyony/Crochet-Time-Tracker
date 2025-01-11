@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import {NextResponse} from "next/server";
+import { authenticateToken } from "@/shared/auth";
 const prisma = new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
@@ -38,16 +39,22 @@ export async function POST(req: Request) {
 }
 
 
-export async function GET() {
+export async function GET(req: Request) {
     try {
+        const token = req.headers.get("authorization")?.split(" ")[1];
+        if (!token) {
+            return NextResponse.json({ message: "Token not informed" }, { status: 401 });
+        }
+        const userId = authenticateToken(token);
+
         const projects = await prisma.project.findMany({
-            orderBy: {
-                id: 'desc',
-            },
+            where: { authorId: userId },
         });
-        return NextResponse.json(projects, { status: 200 });
+
+        return NextResponse.json(projects);
     } catch (error) {
-        console.error("Error fetching projects:", error);
-        return NextResponse.json({ error: "Failed to fetch projects" }, { status: 500 });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }
