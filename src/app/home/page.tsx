@@ -1,15 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddProject from "@/shared/components/Home/AddProject";
-import NavbarAuthComponent from "@/shared/components/Navbar/NavbarLogIn";
 import FooterComponent from "@/shared/components/Footer/Footer";
 import SearchProject from "@/shared/components/Home/SearchProject";
+import NavbarComponent from "@/shared/components/Navbar/Navbar";
 
 export default async function Page() {
     return (
         <div className="d-flex flex-column min-vh-100">
             {/* Navbar */}
-            <NavbarAuthComponent/>
+            <NavbarComponent/>
             {/*main*/}
             <main className="container my-5 flex-grow-1 text-center">
                 <h1 className="mb-4">Time Tracker</h1>
