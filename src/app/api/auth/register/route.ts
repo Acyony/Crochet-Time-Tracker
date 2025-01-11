@@ -42,7 +42,7 @@ export async function POST(
         // Respond with success
         return new Response(JSON.stringify({
             message: 'User created successfully',
-            user: {email: newUser.email}
+            user: {email: newUser.email},
         }), {status: 201});
 
     } catch (error) {

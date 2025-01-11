@@ -16,6 +16,11 @@ export const AddProject = () => {
             return;
         }
 
+        const token = localStorage.getItem("token"); // Get the token
+        if (!token) {
+            return;
+        }
+
         try {
             const newProject = {
                 action: 'create', // Explicitly specify the create action
@@ -25,7 +30,7 @@ export const AddProject = () => {
 
             const response = await fetch('/api/projects', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`  },
                 body: JSON.stringify(newProject),
             });
 

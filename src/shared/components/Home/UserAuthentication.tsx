@@ -36,6 +36,11 @@ export const AuthComponent = ({register}: {register: boolean}) => {
             if (data.message) {
                 alert(`${register ? "Registration" : "Login"} successful!`);
             }
+
+            if (!register) {
+                localStorage.setItem("token", data.token);
+            }
+
             // Redirect to /projects
             router.push('/home');
 

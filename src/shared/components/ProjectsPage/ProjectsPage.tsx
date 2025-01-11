@@ -68,9 +68,19 @@ const ProjectList = () => {
 
     // Delete a project
     const deleteProject = async (projectId: number) => {
+
+        const token = localStorage.getItem("token"); // Get the token
+        if (!token) {
+            setError("You are not authenticated!");
+            setLoading(false); // Stop loading if unauthenticated
+            return;
+        }
+
         try {
             const response = await fetch(`/api/projects/${projectId}/delete-project`, {
                 method: "DELETE",
+                headers: { Authorization: `Bearer ${token}` },
+
             });
             if (!response.ok) {
                 throw new Error("Failed to delete project");
