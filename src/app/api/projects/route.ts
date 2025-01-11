@@ -65,10 +65,11 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ error: 'Invalid action' }), { status: 400 });
 }
 
+
 export async function GET(req: Request) {
     const userId = await getUserIdFromRequest(req);
     if (!userId) {
-        return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+        return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
     try {
@@ -76,10 +77,13 @@ export async function GET(req: Request) {
             where: { authorId: userId },
         });
 
+        if (projects.length === 0) {
+            return NextResponse.json({ message: "No projects found" }, { status: 404 });
+        }
+
         return NextResponse.json(projects);
     } catch (error) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        return NextResponse.json({ message: error.message }, { status: 500 });
+        console.error("Error fetching projects:", error);
+        return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
 }

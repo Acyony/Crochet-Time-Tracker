@@ -18,6 +18,12 @@ export const SearchProject = () => {
 
     // Fetch projects by name
     const searchProjects = async (name: string) => {
+        const token = localStorage.getItem("token"); // Get the token
+        if (!token) {
+            setError("You are not authenticated!");
+            setIsLoading(false); // Stop loading if unauthenticated
+            return;
+        }
         if (!name.trim()) {
             setError("Please enter a valid project name.");
             return;
@@ -27,12 +33,15 @@ export const SearchProject = () => {
         setError(null);
 
         try {
-            const response = await fetch(`/api/projects/search-project?name=${encodeURIComponent(name)}`);
+            const response = await fetch(`/api/projects/search-project?name=${encodeURIComponent(name)}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
             if (!response.ok) {
                 throw new Error("Failed to fetch projects");
             }
 
-            const data = await response.json();
+            const data: Project[] = await response.json();
             setProjects(data);
 
             if (data.length === 0) {
@@ -83,7 +92,7 @@ export const SearchProject = () => {
                         <li
                             key={project.id}
                             className="list-group-item mt-2 d-flex justify-content-between align-items-center"
-                            style={{ cursor: "pointer" }}
+                            style={{cursor: "pointer"}}
                             onClick={() => handleProjectClick(project)}
                         >
                             {project.name}
