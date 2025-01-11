@@ -14,7 +14,7 @@ export const NavbarComponent = () => {
                 <div>
                     <ul className="navbar-nav d-flex flex-row">
                         <li className="nav-item me-3">
-                            <Link href="/" className="nav-link active" aria-current="page">
+                            <Link href="/home" className="nav-link active" aria-current="page">
                                 Home
                             </Link>
                         </li>
