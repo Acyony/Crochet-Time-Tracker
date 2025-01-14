@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, {useState} from "react";
+import {useRouter} from "next/navigation";
 
 type Project = {
     id: number;
@@ -34,7 +34,7 @@ export const SearchProject = () => {
 
         try {
             const response = await fetch(`/api/projects/search-project?name=${encodeURIComponent(name)}`, {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {Authorization: `Bearer ${token}`},
             });
 
             if (!response.ok) {
@@ -61,46 +61,47 @@ export const SearchProject = () => {
     };
 
     return (
-        <div className="d-flex flex-column col-sm-12 gap-3">
-            <div className="d-flex gap-3">
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Project Name"
-                    value={projectName}
-                    onChange={(e) => setProjectName(e.target.value)}
-                />
-                <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => searchProjects(projectName)}
-                    disabled={isLoading}
-                >
-                    {isLoading ? "Searching..." : "Search"}
-                </button>
-            </div>
-
-            {error && (
-                <div className="alert alert-danger mt-3" role="alert">
-                    {error}
+        <div className="mt-xl-5 mb-3">
+            <label htmlFor="basic-url" className="form-label text-start">Search for existing project</label>
+            <div className="d-flex align-items-center gap-2">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter Project Name"
+                        value={projectName}
+                        onChange={(e) => setProjectName(e.target.value)}
+                    />
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => searchProjects(projectName)}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Searching..." : "Search"}
+                    </button>
                 </div>
-            )}
 
-            {projects.length > 0 && (
-                <ul className="list-group mt-5">
-                    {projects.map((project) => (
-                        <li
-                            key={project.id}
-                            className="list-group-item mt-2 d-flex justify-content-between align-items-center"
-                            style={{cursor: "pointer"}}
-                            onClick={() => handleProjectClick(project)}
-                        >
-                            {project.name}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+                {error && (
+                    <div className="alert alert-danger mt-3" role="alert">
+                        {error}
+                    </div>
+                )}
+
+                {projects.length > 0 && (
+                    <ul className="list-group mt-5">
+                        {projects.map((project) => (
+                            <li
+                                key={project.id}
+                                className="list-group-item mt-2 d-flex justify-content-between align-items-center"
+                                style={{cursor: "pointer"}}
+                                onClick={() => handleProjectClick(project)}
+                            >
+                                {project.name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
     );
 };
 

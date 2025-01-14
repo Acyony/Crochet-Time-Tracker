@@ -1,37 +1,19 @@
 'use client';
 import {useEffect, useState} from "react";
 
-type Project = {
-    id: number;
-    name: string;
-    time: number;
-};
-
-
-export const TimeTracker = (props: { projectId: number; }) => {
+export const TimeTracker = (props: { project: {
+        id: number;
+        name: string;
+        time: number;
+    }; }) => {
     const [isCounting, setIsCounting] = useState(false);
     const [time, setTime] = useState(0);
+    const selectedProject = props.project;
     const [totalTime, setTotalTime] = useState(0);
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     useEffect(() => {
-        async function fetchProject() {
-            try {
-                const response = await fetch('/api/projects/' + props.projectId);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch projects');
-                }
-                const data = await response.json();
-                setSelectedProject(data);
-                setTotalTime(data.time);
-            } catch (error) {
-                console.error('Error fetching projects:', error);
-            }
-        }
-
-        fetchProject();
-    }, []);
-
+        setTotalTime(selectedProject.time);
+    }, [selectedProject.time]);
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
@@ -71,12 +53,12 @@ export const TimeTracker = (props: { projectId: number; }) => {
             }
 
             const data = await response.json();
+            console.log(updatedTotalTime);
             console.log('Updated total time in DB:', data.time); // Log the updated total time
         } catch (error) {
             console.error('Error updating project time:', error);
         }
     };
-
 
     const formatTime = (seconds: number) => {
         const hrs = Math.floor(seconds / 3600);

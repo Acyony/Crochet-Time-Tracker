@@ -11,8 +11,8 @@ export default async function Page() {
             {/* Navbar */}
             <NavbarComponent/>
             {/*main*/}
-            <main className="container my-5 flex-grow-1 text-center">
-                <h1 className="mb-4">Time Tracker</h1>
+            <main className="container my-5 flex-grow-1 ">
+                <h1 className="mb-4 text-center">Time Tracker</h1>
                 <div className="mt-3">
 
                     <AddProject/>

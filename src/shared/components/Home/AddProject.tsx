@@ -30,7 +30,7 @@ export const AddProject = () => {
 
             const response = await fetch('/api/projects', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`  },
+                headers: {'Content-Type': 'application/json', Authorization: `Bearer ${token}`},
                 body: JSON.stringify(newProject),
             });
 
@@ -50,22 +50,26 @@ export const AddProject = () => {
     };
 
     return (
-        <div className="d-flex col-sm-12 gap-3">
-            <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Project Name"
-                value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-            />
-            <button
-                type="button"
-                className="btn btn-primary ps-3"
-                onClick={handleSubmit}
-            >
-                Submit
-            </button>
+        <div className="mb-4">
+            <label htmlFor="basic-url" className="form-label text-start">Create a new project</label>
+            <div className="d-flex align-items-center gap-2">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter Project Name"
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                />
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={handleSubmit}
+                >
+                    Submit
+                </button>
+            </div>
         </div>
+
     );
 };
 
