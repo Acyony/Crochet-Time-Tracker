@@ -23,7 +23,7 @@ export const AddProject = () => {
 
         try {
             const newProject = {
-                action: 'create', // Explicitly specify the create action
+                action: 'create', // Explicitly specify the creat action
                 name: projectName,
                 time: 0, // Default time as 0 initially
             };

@@ -7,6 +7,8 @@ import {useRouter} from "next/navigation";
 export const AuthComponent = ({register}: {register: boolean}) => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const router = useRouter();
 
@@ -19,6 +21,8 @@ export const AuthComponent = ({register}: {register: boolean}) => {
         }
 
         const endpoint = register ? '/api/auth/register' : '/api/auth/login';
+        setIsLoading(true);
+        setIsButtonDisabled(true);
 
         try {
             const response = await fetch(endpoint, {
@@ -51,8 +55,10 @@ export const AuthComponent = ({register}: {register: boolean}) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
             alert(error.message);
+        } finally {
+            setIsLoading(false);
+            setIsButtonDisabled(false);
         }
-
     }
 
     const handleToggleAuthMode = () => {
@@ -106,7 +112,7 @@ export const AuthComponent = ({register}: {register: boolean}) => {
                         />
                     </div>
                     <div className="col-12">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary" disabled={isButtonDisabled}>
                             {register ? "Register" : "Login"}
                         </button>
                     </div>
@@ -115,6 +121,7 @@ export const AuthComponent = ({register}: {register: boolean}) => {
                             type="button"
                             className="btn btn-link"
                             onClick={handleToggleAuthMode} // Added redirection handler
+                            disabled={isLoading}
                         >
                             {register
                                 ? "Already have an account? Log in"
