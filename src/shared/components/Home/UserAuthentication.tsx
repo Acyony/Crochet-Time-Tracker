@@ -113,7 +113,7 @@ export const AuthComponent = ({register}: {register: boolean}) => {
                     </div>
                     <div className="col-12">
                         <button type="submit" className="btn btn-primary" disabled={isButtonDisabled}>
-                            {register ? "Register" : "Login"}
+                            {isLoading ? "Loading..." : (register ? "Register" : "Login")}
                         </button>
                     </div>
                     <div className="col-12 mt-3">
