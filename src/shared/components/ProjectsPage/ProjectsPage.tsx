@@ -129,7 +129,7 @@ const ProjectList = () => {
                         {projects.map((project) => (
                             <li
                                 key={project.id}
-                                className="list-group-item mt-2 mb-2 d-flex justify-content-between align-items-center"
+                                className="list-group-item mt-2 mb-2 d-flex justify-content-between align-items-center project-name-li"
                                 style={{cursor: "pointer"}}
                                 onClick={() => handleProjectClick(project)}
                             >
