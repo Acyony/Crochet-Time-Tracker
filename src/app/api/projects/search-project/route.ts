@@ -49,6 +49,9 @@ export async function GET(req: NextRequest) {
                 },
                 authorId: userId
             },
+            orderBy: {
+                createdAt: 'desc',
+            },
         });
 
         return NextResponse.json(projects);

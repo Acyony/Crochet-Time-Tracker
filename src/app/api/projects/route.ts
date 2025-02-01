@@ -75,6 +75,9 @@ export async function GET(req: Request) {
     try {
         const projects = await prisma.project.findMany({
             where: { authorId: userId },
+            orderBy: {
+                createdAt: 'desc',
+            },
         });
 
         if (projects.length === 0) {
