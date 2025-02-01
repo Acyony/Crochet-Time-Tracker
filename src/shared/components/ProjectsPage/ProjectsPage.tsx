@@ -30,7 +30,7 @@ const ProjectList = () => {
 
             try {
                 const response = await fetch("/api/projects", {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 });
 
                 if (!response.ok) {
@@ -54,7 +54,7 @@ const ProjectList = () => {
     if (loading) {
         // Show loading animation while fetching data
         return (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+            <div className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
                 <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
@@ -65,6 +65,14 @@ const ProjectList = () => {
     if (error) {
         return <div>{error}</div>; // Show error message if any
     }
+
+
+
+    const handleProjectEditName = (projectId: number) => {
+        const projectUrl = `/projects/${projectId}/edit`;
+        router.push(projectUrl);
+    };
+
 
     // Delete a project
     const deleteProject = async (projectId: number) => {
@@ -79,7 +87,7 @@ const ProjectList = () => {
         try {
             const response = await fetch(`/api/projects/${projectId}/delete-project`, {
                 method: "DELETE",
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {Authorization: `Bearer ${token}`},
 
             });
             if (!response.ok) {
@@ -93,6 +101,8 @@ const ProjectList = () => {
             console.error("Error deleting project:", error);
         }
     };
+
+
 
     // Handle project click
     const handleProjectClick = (project: Project) => {
@@ -123,16 +133,27 @@ const ProjectList = () => {
                                 onClick={() => handleProjectClick(project)}
                             >
                                 {project.name}
-                                <button
-                                    type="button"
-                                    className="btn btn-danger"
-                                    onClick={(e) => {
-                                        e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
-                                        deleteProject(project.id);
-                                    }}
-                                >
-                                    Delete
-                                </button>
+                                <div className="d-flex gap-2">
+                                    <button
+                                        type="button"
+                                        className="btn btn-info btn-sm w-100 w-md-auto"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
+                                            handleProjectEditName(project.id);
+                                        }}
+                                    >Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm w-100 w-md-auto"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
+                                            deleteProject(project.id);
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </li>
                         ))}
                     </ul>
