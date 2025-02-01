@@ -32,7 +32,7 @@ export default function RootLayout({
             <meta charSet="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>My Timer Track App</title>
-            <link rel="icon" href="/favicon.png"  type="image/png"/>
+            <link rel="icon" href="/favicon.png" type="image/png"/>
         </Head>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}

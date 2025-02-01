@@ -35,6 +35,32 @@ a {
   text-decoration: none;
 }
 
+.button-submit {
+  background:  #afd6e7 !important;
+  color: #0a0a0a  !important;
+}
+
+.button-edit {
+  background:  #a8d0da !important;
+  color: #0a0a0a  !important;
+}
+
+.button-delete {
+  background:  #ebb1aa !important;
+  color: #0a0a0a  !important;
+}
+
+/*
+WIP
+----------------------------------------------------------------
+.project-name {
+  background: rgba( 247, 209, 233, 0.2 ) !important;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ) !important;
+  backdrop-filter: blur( 3px ) !important;
+  -webkit-backdrop-filter: blur( 5px ) !important;
+}*/
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

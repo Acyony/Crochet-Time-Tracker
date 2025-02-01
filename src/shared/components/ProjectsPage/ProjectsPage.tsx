@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 import NavbarComponent from "@/shared/components/Navbar/Navbar";
 import FooterComponent from "@/shared/components/Footer/Footer"; // Correct import for the App Router
 
+
 interface Project {
     id: number;
     name: string;
@@ -128,7 +129,7 @@ const ProjectList = () => {
                         {projects.map((project) => (
                             <li
                                 key={project.id}
-                                className="list-group-item mt-2 d-flex justify-content-between align-items-center"
+                                className="list-group-item mt-2 mb-2 d-flex justify-content-between align-items-center"
                                 style={{cursor: "pointer"}}
                                 onClick={() => handleProjectClick(project)}
                             >
@@ -136,7 +137,7 @@ const ProjectList = () => {
                                 <div className="d-flex gap-2">
                                     <button
                                         type="button"
-                                        className="btn btn-info btn-sm w-100 w-md-auto"
+                                        className="btn btn-secondary btn-sm w-100 w-md-auto button-edit"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
                                             handleProjectEditName(project.id);
@@ -145,7 +146,7 @@ const ProjectList = () => {
                                     </button>
                                     <button
                                         type="button"
-                                        className="btn btn-danger btn-sm w-100 w-md-auto"
+                                        className="btn btn-danger btn-sm w-100 w-md-auto button-delete"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
                                             deleteProject(project.id);
