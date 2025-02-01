@@ -73,7 +73,7 @@ export const SearchProject = () => {
                     />
                     <button
                         type="button"
-                        className="btn btn-primary"
+                        className="btn btn-primary button-submit"
                         onClick={() => searchProjects(projectName)}
                         disabled={isLoading}
                     >

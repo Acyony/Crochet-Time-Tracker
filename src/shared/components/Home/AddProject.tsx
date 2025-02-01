@@ -62,7 +62,7 @@ export const AddProject = () => {
                 />
                 <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-primary button-submit"
                     onClick={handleSubmit}
                 >
                     Submit

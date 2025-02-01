@@ -38,6 +38,20 @@ a {
 .button-submit {
   background:  #afd6e7 !important;
   color: #0a0a0a  !important;
+  border: none !important;
+
+}
+
+.button-start-time {
+  background:  #4b98d2 !important;
+  color: #0a0a0a  !important;
+  border: none !important;
+}
+
+.button-stop-time {
+  background:  #e88260 !important;
+  color: #0a0a0a  !important;
+  border: none !important;
 }
 
 .button-edit {

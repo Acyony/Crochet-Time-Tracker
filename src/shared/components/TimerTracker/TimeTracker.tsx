@@ -81,7 +81,7 @@ export const TimeTracker = (props: { project: {
                     <div className="card-body">
                         <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-primary button-start-time"
                             onClick={handleStart}
                         >
                             Start Timer
@@ -95,7 +95,7 @@ export const TimeTracker = (props: { project: {
                     <div className="card-body">
                         <button
                             type="button"
-                            className="btn btn-danger"
+                            className="btn btn-danger button-stop-time"
                             onClick={handleStop}
                         >
                             Stop Timer
