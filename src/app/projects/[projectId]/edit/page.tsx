@@ -101,9 +101,10 @@ export default function Page() {
     ) : (
         <div className="d-flex flex-column min-vh-100">
             <NavbarComponent/>
-            <main className="container my-5 flex-grow-1 text-center">
+            <main className="container my-5 flex-grow-1 ">
                 <div className="mb-4">
-                    <label htmlFor="basic-url" className="form-label text-start">Add a new project name</label>
+                    <label htmlFor="basic-url" className="form-label">Add a new project name</label>
+
                     <div className="d-flex align-items-center gap-2">
                         <input
                             type="text"
