@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# <img src="https://github.com/user-attachments/assets/a3bb465d-dc46-430b-a5c7-7a82638a2bd3" width="30" alt="Time tracker logo" /> Time tracker
 
-## Getting Started
 
-First, run the development server:
+```A simple and intuitive Time Tracker that records hours, minutes, and seconds to help you monitor and manage your time effectively.```
+<br>
+<br>
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Tech Stack:**
 
-You can start editing the page by modifying `app/homePage.tsx`. The page auto-updates as you edit the file.
+<img src="https://github.com/user-attachments/assets/0c0033bf-d564-4550-9f07-5abbb4f2105c"  width="32" height="32" alt="TypeScript" title="TypeScript" /> &emsp;
+<img src="https://github.com/user-attachments/assets/c56c0b61-a4e9-43a3-8c62-5416a43f7988"  width="32" height="32" alt="NextJs" title="NextJs" /> &emsp;
+<img src="https://github.com/user-attachments/assets/8b1a1827-c6d4-4a49-9dfb-39a743975343"  width="32" height="32" alt="Prisma" title="Prisma" /> &emsp;
+<img src="https://github.com/user-attachments/assets/b0d72b09-ed45-47c1-9367-03e820d45bd7"  width="32" height="32" alt="Prisma" title="Prisma" /> &emsp;
+<br>
+<br>
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Pages:**
 
-## Learn More
+| Register       | Login        |
+| ---------- | ------------------ |
+| <img src="https://github.com/user-attachments/assets/cff480cd-cdf4-4f7f-bef0-c1d63cd325ea"  width="500" alt="Register" title="Register" />  | <img src="https://github.com/user-attachments/assets/131c4b57-3f16-4958-8571-528e2d18cab0"  width="500" alt="Login" title="Login" /> |
 
-To learn more about Next.js, take a look at the following resources:
+| Home       | All Projects        |
+| ---------- | ------------------ |
+|   <img src="https://github.com/user-attachments/assets/d57e79d3-bf5c-44c6-8dec-f0a76322572a"  width="500" alt="Home" title="Home" />  | <img src="https://github.com/user-attachments/assets/f1450406-cbc8-4f56-935b-f443bda51aa5"  width="500" alt="All Projects" title="All Projects" /> |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Project Timer Page      | All Projects Hover       |
+| ---------- | ------------------ |
+|   <img src="https://github.com/user-attachments/assets/a692fc4c-8ead-42a6-864c-7f9bebcc4335"  width="500" alt="Project Timer Page  " title="Project Timer Page  " />  | <img src="https://github.com/user-attachments/assets/aa195c3f-8ad2-4e45-8b32-caf6063a541d"  width="500" alt="All Projects Hover" title="All Projects Hover" /> |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Edit Page      | Project Structure       |
+| ---------- | ------------------ |
+|   <img src="https://github.com/user-attachments/assets/99ae3d39-38ee-4dde-8b50-8cdf630ad6bc"  width="500" alt="Edit Page  " title="Edit Page  " />  | <img src="https://github.com/user-attachments/assets/f8fd3086-6fba-4705-a8df-0ba5acb6bc4a"  width="500" alt="All Projects Hover" title="All Projects Hover" /> |
 
-## Deploy on Vercel
+<br>
+<br>
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Deployed on Vercel
+ [Time Tracker](https://time-tracker--tau.vercel.app/) 
