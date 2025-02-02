@@ -22,6 +22,7 @@ export const SearchProject = () => {
         if (!token) {
             setError("You are not authenticated!");
             setIsLoading(false); // Stop loading if unauthenticated
+            router.push("/auth/login");
             return;
         }
         if (!name.trim()) {

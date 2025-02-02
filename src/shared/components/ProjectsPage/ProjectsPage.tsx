@@ -26,6 +26,7 @@ const ProjectList = () => {
             if (!token) {
                 setError("You are not authenticated!");
                 setLoading(false); // Stop loading if unauthenticated
+                router.push("/auth/login");
                 return;
             }
 
@@ -35,7 +36,7 @@ const ProjectList = () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error("Failed to fetch projects!");
+                    router.push("/auth/login");
                 }
 
                 const data: Project[] = await response.json();
@@ -82,6 +83,7 @@ const ProjectList = () => {
         if (!token) {
             setError("You are not authenticated!");
             setLoading(false); // Stop loading if unauthenticated
+            router.push("/auth/login");
             return;
         }
 
