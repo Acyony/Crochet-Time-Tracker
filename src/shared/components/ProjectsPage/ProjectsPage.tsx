@@ -151,7 +151,9 @@ const ProjectList = () => {
                                         className="btn btn-danger btn-sm w-100 w-md-auto button-delete"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
-                                            deleteProject(project.id);
+                                            if (window.confirm("Are you sure you want to delete this project?")) {
+                                                deleteProject(project.id);
+                                            }
                                         }}
                                     >
                                         Delete
