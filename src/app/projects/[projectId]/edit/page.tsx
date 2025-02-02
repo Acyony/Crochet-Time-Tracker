@@ -114,7 +114,7 @@ export default function Page() {
                         />
                         <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-primary button-submit"
                             onClick={() => updateProjectName(project.id, projectName)}
                         >
                             Submit
