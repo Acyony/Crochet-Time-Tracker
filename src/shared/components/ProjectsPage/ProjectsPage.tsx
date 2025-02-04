@@ -69,7 +69,6 @@ const ProjectList = () => {
     }
 
 
-
     const handleProjectEditName = (projectId: number) => {
         const projectUrl = `/projects/${projectId}/edit`;
         router.push(projectUrl);
@@ -106,7 +105,6 @@ const ProjectList = () => {
     };
 
 
-
     // Handle project click
     const handleProjectClick = (project: Project) => {
         setSelectedProject(project);
@@ -116,7 +114,8 @@ const ProjectList = () => {
     };
 
     return (
-        <>
+        <div className="d-flex flex-column min-vh-100">
+
             <NavbarComponent/>
             <main className="container my-5 flex-grow-1 ">
                 <div className="container">
@@ -165,7 +164,7 @@ const ProjectList = () => {
                 </div>
             </main>
             <FooterComponent/>
-        </>
+        </div>
     );
 };
 
