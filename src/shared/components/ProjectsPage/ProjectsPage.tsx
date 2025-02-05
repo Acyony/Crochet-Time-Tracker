@@ -113,6 +113,16 @@ const ProjectList = () => {
         router.push(projectUrl); // Navigate to the project page
     };
 
+    const formatTime = (seconds: number) => {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hrs.toString().padStart(2, '0')}:${mins
+            .toString()
+            .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+
     return (
         <div className="d-flex flex-column min-vh-100">
 
@@ -130,15 +140,21 @@ const ProjectList = () => {
                         {projects.map((project) => (
                             <li
                                 key={project.id}
-                                className="list-group-item mt-2 mb-2 d-flex justify-content-between align-items-center project-name-li"
+                                className="list-group-item mt-2 mb-2 d-flex justify-content-between align-items-center project-name-li "
                                 style={{cursor: "pointer"}}
                                 onClick={() => handleProjectClick(project)}
                             >
-                                {project.name}
-                                <div className="d-flex gap-2">
+                                <span className="text-truncate d-block d-md-block">{project.name}</span>
+
+                                <div className="d-flex gap-2 ">
+                                    <div
+                                        className="col-sm-4 gy-3 align-items-stretch w-auto h-50 d-none d-lg-block me-4">
+                                        <p className="card-text">Total Time Worked: {formatTime(project.time)}</p>
+                                    </div>
+
                                     <button
                                         type="button"
-                                        className="btn btn-secondary btn-sm w-100 w-md-auto button-edit"
+                                        className="btn btn-secondary btn-sm w-100 w-md-auto button-edit me-4"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent triggering the `handleProjectClick` event
                                             handleProjectEditName(project.id);
