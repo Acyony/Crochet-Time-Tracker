@@ -83,6 +83,7 @@ export const TimeTracker = (props: { project: {
                             type="button"
                             className="btn btn-primary button-start-time"
                             onClick={handleStart}
+                            disabled={isCounting}
                         >
                             Start Timer
                         </button>
@@ -97,6 +98,7 @@ export const TimeTracker = (props: { project: {
                             type="button"
                             className="btn btn-danger button-stop-time"
                             onClick={handleStop}
+                            disabled={!isCounting}
                         >
                             Stop Timer
                         </button>
