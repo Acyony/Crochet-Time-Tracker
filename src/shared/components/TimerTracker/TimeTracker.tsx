@@ -105,12 +105,20 @@ export const TimeTracker = (props: { project: {
                 </div>
             </div>
             <div className="col-sm-4 gy-3">
-                <div className="card">
-                    <div className="card-body">
-                        <p className="card-text">Total Time Worked: {formatTime(totalTime)} </p>
+                <div className="card h-100">
+                    <div className="card-body d-flex flex-column justify-content-between">
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            disabled
+                        >
+                            Total Time
+                        </button>
+                        <p className="card-text mt-3">Total Time Worked: {formatTime(totalTime)} </p>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
